@@ -1,11 +1,10 @@
 var sinon = require('sinon');
 var expect = require('chai').expect;
 
-var mongoose = require('mongoose');
 var User = require('./../../lib/User');
-var UserModel = mongoose.model('User');
 
 describe('User', function() {
+
   it('#colorizeUnicorns', function(done) {
 
     // test setup
@@ -13,7 +12,7 @@ describe('User', function() {
     var query = { world: '1' };
 
     // mocking MongoDB
-    sinon.stub(UserModel, 'find').yields(null, unicorns);
+    sinon.stub(User.model, 'find').yields(null, unicorns);
 
     // calling the test case
     User.colorizeUnicorns(query, function(err, coloredUnicorns) {
