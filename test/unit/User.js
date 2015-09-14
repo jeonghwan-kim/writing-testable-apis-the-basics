@@ -6,18 +6,18 @@ var User = require('./../../lib/User');
 var UserModel = mongoose.model('User');
 
 describe('User', function() {
-  it('#findUnicorns', function(done) {
+  it('#colorizeUnicorns', function(done) {
 
     // test setup
     var unicorns = [ 'unicorn1', 'unicorn2' ];
     var query = { world: '1' };
 
     // mocking MongoDB
-    sinon.stub(UserModel, 'findUnicorns').yields(null, unicorns);
+    sinon.stub(UserModel, 'find').yields(null, unicorns);
 
     // calling the test case
     User.colorizeUnicorns(query, function(err, coloredUnicorns) {
-      
+
       // asserting
       expect(err).to.be.null;
       expect(coloredUnicorns).to.eql(['unicorn1-pink', 'unicorn2-purple']);
